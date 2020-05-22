@@ -2,7 +2,6 @@
   "name": "Espressito",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
     "jquery-ujs": "^1.2.2",
     "material-design-icons": "^3.0.1",
@@ -11,6 +10,9 @@
   "version": "1.0.0",
   "description": "Espressito",
   "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "author": "Rafael Parreira",
   "license": "MIT"
 }
