@@ -14,5 +14,10 @@
  *= require_self
  *= require materialize-css/dist/css/materialize
  */
+ //= depend_on_asset "logo.png"
+
+.logo {
+  background-image:url('<%= asset_path("logo.svg") %> ');
+}
 @import "materialize";
 @import "material_icons";
