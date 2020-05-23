@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
         :current_auth_resource
     end
     def after_sign_in_path_for(resource)
-      stored_location_for(resource) || expense_path
+      stored_location_for(resource) || expenses_path
     end
     def current_auth_resource
         if manager_signed_in?

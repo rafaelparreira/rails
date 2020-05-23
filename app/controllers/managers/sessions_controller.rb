@@ -7,13 +7,14 @@ class Managers::SessionsController < Devise::SessionsController
   # GET /resource/sign_in
   #def new
   #  super
+  #  format.html { redirect_to '/expenses'}
   #end
 
   # POST /resource/sign_in
-  def create
-    super
-    format.html { redirect_to '/expenses'}
-  end
+  #def create
+  #  super
+  #  format.html { redirect_to '/expenses'}
+  #end
 
   # DELETE /resource/sign_out
   #def destroy

@@ -1,13 +1,9 @@
 Rails.application.routes.draw do
+  root 'page#index'
   #devise_for :employees
   # devise_for :managers
   #root :to => redirect('/expenses')
-  namespace :managers do
-    root :to => "expenses#index"
-  end
-  namespace :employees do
-    root :to => "expenses#index"
-  end
+
   resources :expenses do
     member do
       post 'approve'
@@ -17,7 +13,7 @@ Rails.application.routes.draw do
   devise_for :managers,
     path: 'managers',
     path_names: {
-      sign_in: 'login',
+      sign_in: 'sign_in',
       sign_out: 'sign_out'
     }
 
