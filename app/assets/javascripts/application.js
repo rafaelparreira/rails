@@ -16,3 +16,7 @@
 //= require_tree .
 //= require jquery
 //= require jquery-ujs
+import 'materialize-css/dist/js/materialize'
+$(document).on('turbolinks:load', function() {
+    $('.dropdown-trigger').dropdown();
+  });
