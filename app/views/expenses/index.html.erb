@@ -1,44 +1,54 @@
 <p id="notice"><%= notice %></p>
+    <h1>Expenses</h1>
 
-<h1>Expenses</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Value</th>
+          <th>Status</th>
+          <th>User</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Date</th>
-      <th>Value</th>
-      <th>Status</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <tbody>
+        <% @expenses.each do |expense| %>
+          <tr>
+            <td><%= expense.description %></td>
+            <td><%= expense.date %></td>
+            <td><%= expense.value %></td>
+            <td><%= expense.status %></td>
+            <td><%= expense.user_id %></td>
+            <td>
+              <% if can? :approve, Expense %>
+                <%= link_to 'Aprovar', approve_expense_path(expense), method: :post %>
+              <% end %>
+            </td>
+            <td><%= link_to 'Show', expense %></td>
+            <td>
+              <% if can? :edit, Expense %>
+                <%= link_to 'Edit', edit_expense_path(expense) %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-  <tbody>
-    <% @expenses.each do |expense| %>
-      <tr>
-        <td><%= expense.description %></td>
-        <td><%= expense.date %></td>
-        <td><%= expense.value %></td>
-        <td><%= expense.status %></td>
-        <td><%= expense.user_id %></td>
-        <td>
-          <% if can? :approve, Expense %>
-            <%= link_to 'Aprovar', approve_expense_path(expense), method: :post %>
-          <% end %>
-        </td>
-        <td><%= link_to 'Show', expense %></td>
-        <td>
-          <% if can? :edit, Expense %>
-            <%= link_to 'Edit', edit_expense_path(expense) %>
-          <% end %>
-        </td>
-      </tr>
+    <br>
+    <% if can? :create, Expense %>
+      <%= link_to 'New Expense', new_expense_path %>
+      <div class="fixed-action-btn">
+        <a href="/expenses/new", class="btn-floating btn-large light-blue darken-1">
+          <i class="large material-icons">add_circle</i>
+        </a>
+        <ul>
+          <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+          <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+          <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+          <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+        </ul>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-<% if can? :create, Expense %>
-  <%= link_to 'New Expense', new_expense_path %>
-<% end %>

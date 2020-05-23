@@ -5,7 +5,6 @@ class Ability
 
   def initialize(user)      
     if user.is_a?(Manager)
-      #can Page
       can :manage, Manager
       can [:show, :index, :approve], Expense
     elsif user.is_a?(Employee)

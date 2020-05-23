@@ -6,32 +6,56 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/assets/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
-</nav>
-    <div class="light-blue lighten-1" role="navigation">
-      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><%= image_tag 'logo.svg' %></a>
+    <nav class="light-blue lighten-1" role="navigation">
+      <div class="nav-wrapper container"><a id="logo-container" href="page/index" class="brand-logo"><%= image_tag 'logo.svg' %></a>
         <ul class="right hide-on-med-and-down">
-          <p class="navbar-text pull-right">
-            <% if manager_signed_in? %>
-              <strong><%= current_manager.name %></strong>.
-              <%= link_to "Sair", destroy_manager_session_path, method: :delete, :class => 'navbar-link'  %>
-            <% else %>
-              <% if employee_signed_in? %>
-                <strong><%= current_employee.name %></strong>.
-                <%= link_to "Sair", destroy_employee_session_path, method: :delete, :class => 'navbar-link'  %>
+          <% if manager_signed_in? %>
+                <li><%= current_manager.email %></li>
+                <li><i class="material-icons md-light md-48 medium">account_circle</i></li>
+                <li><%= link_to "Sair", destroy_manager_session_path, method: :delete %></li>
               <% else %>
-                <%= link_to "Sign up", new_manager_registration_path, :class => 'navbar-link'  %> |
-                <%= link_to "Login", new_manager_session_path, :class => 'navbar-link'  %>
+                <% if employee_signed_in? %>
+                  <li><strong><%= current_employee.email %></strong></li>
+                  <li><i class="large material-icons md-light">account_circle</i></li>
+                  <li><%= link_to "Sair", destroy_employee_session_path, method: :delete %></li>
+                <% else %>
+                  <li><%= link_to "Sign up", new_manager_registration_path %></li>
+                  <li><%= link_to "Login", new_manager_session_path %></li>
+                <% end %>
               <% end %>
-            <% end %>
-          </p>
-        </div>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+          <% if manager_signed_in? %>
+                <li><%= current_manager.email %></li>
+                <li><i class="material-icons md-light md-48 medium">account_circle</i></li>
+                <li><%= link_to "Sair", destroy_manager_session_path, method: :delete %></li>
+              <% else %>
+                <% if employee_signed_in? %>
+                  <li><strong><%= current_employee.email %></strong></li>
+                  <li><i class="large material-icons md-light">account_circle</i></li>
+                  <li><%= link_to "Sair", destroy_employee_session_path, method: :delete %></li>
+                <% else %>
+                  <li><%= link_to "Sign up", new_manager_registration_path %></li>
+                  <li><%= link_to "Login", new_manager_session_path %></li>
+                <% end %>
+              <% end %>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
-    </div>
+    </nav>
+
   </head>
 
   <body>
-    <%= yield %>
+    <h5 class="center-align">
+      <div class=”container"> 
+        <%= yield %>
+      <div>
+    </h5>
   </body>
 </html>
 
