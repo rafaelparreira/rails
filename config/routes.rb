@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  root 'page#index'
   #devise_for :employees
   # devise_for :managers
   #root :to => redirect('/expenses')
+  namespace :managers do
+    root :to => "expenses#index"
+  end
+  namespace :employees do
+    root :to => "expenses#index"
+  end
   resources :expenses do
     member do
       post 'approve'
