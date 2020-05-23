@@ -9,20 +9,17 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
     <nav class="light-blue lighten-1" role="navigation">
-      <div class="nav-wrapper container"><a id="logo-container" href="page/index" class="brand-logo"><%= image_tag 'logo.svg' %></a>
+      <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><%= image_tag 'logo.svg' %></a>
         <ul class="right hide-on-med-and-down">
           <% if manager_signed_in? %>
-                <li><%= current_manager.email %></li>
-                <li><i class="material-icons md-light md-48 medium">account_circle</i></li>
+                <li><a><%= current_manager.name %></a></li>
+                <li><i href="/managers/edit", class="material-icons md-light md-48 medium">account_circle</i></li>
                 <li><%= link_to "Sair", destroy_manager_session_path, method: :delete %></li>
               <% else %>
                 <% if employee_signed_in? %>
-                  <li><strong><%= current_employee.email %></strong></li>
-                  <li><i class="large material-icons md-light">account_circle</i></li>
+                  <li><a><%= current_employee.name %></a></li>
+                <li><i href="/employees/edit", class="material-icons md-light md-48 medium">account_circle</i></li>
                   <li><%= link_to "Sair", destroy_employee_session_path, method: :delete %></li>
-                <% else %>
-                  <li><%= link_to "Sign up", new_manager_registration_path %></li>
-                  <li><%= link_to "Login", new_manager_session_path %></li>
                 <% end %>
               <% end %>
         </ul>
@@ -31,7 +28,7 @@
 
     <body>
       <h5 class="center-align">
-        <div class="container"> 
+        <div class="container center-align"> 
           <%= yield %>
         <div>
       </h5>

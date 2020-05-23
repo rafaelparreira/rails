@@ -12,26 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :description %>
+    <label class="label">Descrição</label>
     <%= form.text_field :description %>
   </div>
 
   <div class="field">
-    <%= form.label :date %>
+    <label class="label">Data</label>
     <%= form.text_field :date, class: "datepicker" %>
   </div>
 
   <div class="field">
-    <%= form.label :value %>
+    <label class="label">Valor</label>
     <%= form.text_field :value %>
   </div>
 
   <div class="field">
-    <%= form.label :picture %>
+    <label class="label">Comprovante</label>
     <%= form.file_field :picture %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Criar despesa"%>
   </div>
 <% end %>
