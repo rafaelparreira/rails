@@ -1,17 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Descrição:</strong>
   <%= @expense.description %>
 </p>
 
 <p>
-  <strong>Date:</strong>
-  <%= @expense.date %>
+  <strong>Data:</strong>
+  <%= format_date(@expense.date) %>
 </p>
 
 <p>
-  <strong>Value:</strong>
+  <strong>Valor:</strong>
   <%= @expense.value %>
 </p>
 
@@ -21,14 +21,10 @@
 </p>
 
 <p>
-  <strong>Picture:</strong>
+  <strong>Comprovante:</strong>
   <%= image_tag(@expense.picture_url, :width => 600) if @expense.picture.present? %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @expense.user_id %>
-</p>
 
-<%= link_to 'Edit', edit_expense_path(@expense) %> |
-<%= link_to 'Back', expenses_path %>
+<%= link_to 'Editar', edit_expense_path(@expense) %> |
+<%= link_to 'Voltar', expenses_path %>

@@ -1,6 +1,7 @@
 class ExpensesController < ApplicationController
+  helper ExpensesHelper
   load_and_authorize_resource
-  before_action :set_expense, only: [:show, :edit, :update, :destroy, :approve]
+  before_action :set_expense, only: [:show, :edit, :update, :approve, :deny, :user_name]
 
   # GET /expenses
   # GET /expenses.json
@@ -10,6 +11,7 @@ class ExpensesController < ApplicationController
     elsif current_employee != nil
       @expenses = Expense.where(user_id: current_employee.id)
     end
+    :user_name
   end
 
   # GET /expenses/1
@@ -46,6 +48,9 @@ class ExpensesController < ApplicationController
   # PATCH/PUT /expenses/1
   # PATCH/PUT /expenses/1.json
   def update
+    if @expense.status == 'Negada'
+      @expense.status = 'Reaberto'
+    end
     respond_to do |format|
       if @expense.update(expense_params)
         format.html { redirect_to @expense, notice: 'Expense was successfully updated.' }
@@ -69,9 +74,18 @@ class ExpensesController < ApplicationController
 
   def approve
     @expense = Expense.find(params[:id])
-    @expense.update_attributes({:status => 'Approved'})
+    @expense.update_attributes({:status => 'Aprovada'})
     respond_to do |format|
       format.html { redirect_to expenses_url, notice: 'Expense was successfully approved.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def deny
+    @expense = Expense.find(params[:id])
+    @expense.update_attributes({:status => 'Negada'})
+    respond_to do |format|
+      format.html { redirect_to expenses_url, notice: 'Expense was successfully Denied.' }
       format.json { head :no_content }
     end
   end
@@ -86,4 +100,6 @@ class ExpensesController < ApplicationController
     def expense_params
       params.require(:expense).permit(:description, :date, :value, :picture)
     end
+
+  
 end

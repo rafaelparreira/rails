@@ -8,7 +8,9 @@
           <th>Data</th>
           <th>Valor</th>
           <th>Situação</th>
-          <th>Requisitante</th>
+          <% if can? :approve, Expense %>
+            <th>Requisitante</th>
+          <% end %>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -17,19 +19,28 @@
         <% @expenses.each do |expense| %>
           <tr>
             <td><%= expense.description %></td>
-            <td><%= expense.date %></td>
+            <td><%= format_date(expense.date) %></td>
             <td><%= expense.value %></td>
             <td><%= expense.status %></td>
-            <td><%= expense.user_id %></td>
+            <% if can? :approve, Expense %>
+              <td><%= get_user_name(expense.user_id) %></td>
+            <% end %>
             <td>
               <% if can? :approve, Expense %>
                 <%= link_to 'Aprovar', approve_expense_path(expense), method: :post %>
               <% end %>
             </td>
-            <td><%= link_to 'Show', expense %></td>
+            <td>
+              <% if can? :deny, Expense %>
+                <%= link_to 'Negar', deny_expense_path(expense), method: :post %>
+              <% end %>
+            </td> 
+            <td><%= link_to 'Mostrar', expense %></td>
             <td>
               <% if can? :edit, Expense %>
-                <%= link_to 'Edit', edit_expense_path(expense) %>
+                <% if can? :edit, expense %>
+                  <%= link_to 'Editar', edit_expense_path(expense) %>
+                <% end %>  
               <% end %>
             </td>
           </tr>

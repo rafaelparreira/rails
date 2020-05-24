@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :expenses do
     member do
       post 'approve'
+      post 'deny'
+      get 'user_name'
     end
   end
   
