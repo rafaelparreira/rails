@@ -11,10 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require turbolinks
-//= require bootstrap-sprockets
 //= require rails-ujs
+//= require turbolinks
 //= require activestorage
 //= require_tree
 import 'materialize-css/dist/js/materialize'

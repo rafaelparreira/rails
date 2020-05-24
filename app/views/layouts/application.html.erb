@@ -14,12 +14,12 @@
           <% if manager_signed_in? %>
                 <li><a><%= current_manager.name %></a></li>
                 <li><i href="/managers/edit", class="material-icons md-light md-48 medium">account_circle</i></li>
-                <li><%= link_to "Sair", destroy_manager_session_path, method: :delete %></li>
+                <li><%= link_to "Sair", destroy_manager_session_path, method: :delete, class: "nav-link" %></li>
               <% else %>
                 <% if employee_signed_in? %>
                   <li><a><%= current_employee.name %></a></li>
                 <li><i href="/employees/edit", class="material-icons md-light md-48 medium">account_circle</i></li>
-                  <li><%= link_to "Sair", destroy_employee_session_path, method: :delete %></li>
+                  <li><%= link_to "Sair", destroy_employee_session_path, method: :delete, class: "nav-link" %></li>
                 <% end %>
               <% end %>
         </ul>
