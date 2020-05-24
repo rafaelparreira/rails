@@ -10,12 +10,13 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require bootstrap-sprockets
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
-//= require_tree .
-//= require jquery
-//= require jquery-ujs
+//= require_tree
 import 'materialize-css/dist/js/materialize'
 $(document).on('turbolinks:load', function() {
     $('.dropdown-trigger').dropdown();
