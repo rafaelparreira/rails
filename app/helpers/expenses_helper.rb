@@ -5,4 +5,7 @@ module ExpensesHelper
     def format_date(data_expense)
         data_expense.blank? ? '' : data_expense.strftime("%d/%m/%Y")
     end
+    def format_number_real(value)
+        number_to_currency(value, unit: "R$", separator: ",", delimiter: "")
+    end
 end

@@ -38,6 +38,7 @@ gem 'carrierwave'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.4'
   gem  'rspec-rails' ,  '~> 4.0.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'rubocop', '~> 0.83.0'
@@ -51,6 +52,8 @@ group :development do
 end
 
 group :test do
+  gem 'shoulda-matchers'
+  gem 'simplecov', '~> 0.17.1'
   gem  'rspec-rails' ,  '~> 4.0.0'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'

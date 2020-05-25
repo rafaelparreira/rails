@@ -20,7 +20,7 @@
           <tr>
             <td><%= expense.description %></td>
             <td><%= format_date(expense.date) %></td>
-            <td><%= expense.value %></td>
+            <td><%= format_number_real(expense.value) %></td>
             <td><%= expense.status %></td>
             <% if can? :approve, Expense %>
               <td><%= get_user_name(expense.user_id) %></td>
@@ -47,6 +47,10 @@
         <% end %>
       </tbody>
     </table>
+
+  
+  <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
 
     <br>
     <% if can? :create, Expense %>

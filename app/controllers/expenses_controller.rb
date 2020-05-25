@@ -11,7 +11,6 @@ class ExpensesController < ApplicationController
     elsif current_employee != nil
       @expenses = Expense.where(user_id: current_employee.id)
     end
-    :user_name
   end
 
   # GET /expenses/1
