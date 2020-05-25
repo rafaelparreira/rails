@@ -29,7 +29,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.2'
 gem 'cancancan'
 gem 'carrierwave'
-
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -38,10 +37,9 @@ gem 'carrierwave'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-
 group :development, :test do
+  gem  'rspec-rails' ,  '~> 4.0.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'rspec', '~> 3.4'
   gem 'rubocop', '~> 0.83.0'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
@@ -53,12 +51,12 @@ group :development do
 end
 
 group :test do
+  gem  'rspec-rails' ,  '~> 4.0.0'
   # Adds support for Capybara system testing and selenium driver
-  gem 'rspec', '~> 3.4'
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'webdrivers', '~> 4.0' #'chromedriver-helper'
 end
 
 group :production do

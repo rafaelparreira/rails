@@ -33,7 +33,7 @@ class ExpensesController < ApplicationController
   def create
     @expense = Expense.new(expense_params)
     @expense.user_id = current_employee.id
-    @expense.status = 'Aberto'
+    @expense.status = 'Pendente'
     respond_to do |format|
       if @expense.save
         format.html { redirect_to @expense, notice: 'Expense was successfully created.' }
@@ -48,9 +48,6 @@ class ExpensesController < ApplicationController
   # PATCH/PUT /expenses/1
   # PATCH/PUT /expenses/1.json
   def update
-    if @expense.status == 'Negada'
-      @expense.status = 'Reaberto'
-    end
     respond_to do |format|
       if @expense.update(expense_params)
         format.html { redirect_to @expense, notice: 'Expense was successfully updated.' }
@@ -83,7 +80,7 @@ class ExpensesController < ApplicationController
 
   def deny
     @expense = Expense.find(params[:id])
-    @expense.update_attributes({:status => 'Negada'})
+    @expense.update_attributes({:status => 'Rejeitada'})
     respond_to do |format|
       format.html { redirect_to expenses_url, notice: 'Expense was successfully Denied.' }
       format.json { head :no_content }

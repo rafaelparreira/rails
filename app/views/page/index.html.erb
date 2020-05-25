@@ -1,19 +1,33 @@
 <div class="container">
   <div class="section">
 
-    <!--   Icon Section   -->
-    <div class="row center">
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <a href="/employees/sign_in", class="waves-effect waves-light btn">Requisitante</a>
-          <p class="light">Enviar despesas.</p>
+    <% if can? :index, Expense %>
+      <div class="row center">
+        <div class="col s1 m4">
+          <div class="icon-block">
+            <a href="/expenses", class="waves-effect waves-light btn">Despesas</a>
+            <p class="light">Gerenciar despesas.</p>
+          </div>
         </div>
       </div>
+      
+    <% else %>
+      <div class="row center">
+        <div class="col s13 m4">
+          <div class="icon-block">
+            <a href="/employees/sign_in", class="waves-effect waves-light btn">Requisitante</a>
+            <p class="light">Enviar despesas.</p>
+          </div>
+        </div>
 
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <a href="/managers/sign_in", class="waves-effect waves-light btn">Administrador</a>
-          <p class="light">Administrar despesas.</p>
+        <div class="col s13 m4">
+          <div class="icon-block">
+            <a href="/managers/sign_in", class="waves-effect waves-light btn">Administrador</a>
+            <p class="light">Administrar despesas.</p>
+          </div>
         </div>
+      
       </div>
-    </div>
+    <% end %>
+  </div>
+</div>

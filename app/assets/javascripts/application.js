@@ -15,14 +15,4 @@
 //= require turbolinks
 //= require activestorage
 //= require_tree
-import 'materialize-css/dist/js/materialize'
-$(document).on('turbolinks:load', function() {
-    $('.dropdown-trigger').dropdown();
-  });
-  $(document).ready(function(){
-    $('.datepicker').datepicker();
-  });
-  $(document).ready(function(){
-    $('.modal').modal();
-  });
-      
+//= require materialize.min.js
